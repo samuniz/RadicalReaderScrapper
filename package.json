@@ -1,0 +1,28 @@
+{
+  "name": "radicalreaderscrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuniz/RadicalReaderScrapper.git"
+  },
+  "author": "Sabrina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samuniz/RadicalReaderScrapper/issues"
+  },
+  "homepage": "https://github.com/samuniz/RadicalReaderScrapper#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "logger": "0.0.1",
+    "mongoose": "^5.8.0"
+  }
+}
