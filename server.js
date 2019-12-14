@@ -14,7 +14,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-var routes = require("./routes/routes.js.js");
+var routes = require("./routes/routes.js");
 
 app.use(routes);
 // Our scraping tools
@@ -33,9 +33,16 @@ app.use(routes);
 // Parse request body as JSON
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://radicalReaders:radical1@ds253368.mlab.com:53368/heroku_6br9pzm3", 
+  {
+    useMongoCliente: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  },
+  
+);
 // mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
 // Start the server
