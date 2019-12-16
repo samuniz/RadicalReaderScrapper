@@ -19,6 +19,7 @@ router.get("/", function(req, res){
     res.render("index", hbsObject);
   })
 }); 
+
 // Favorites Page 
 router.get("/favorites", function(req, res){
   db.Article.find({favorite: true},function(err, data){
@@ -29,6 +30,8 @@ router.get("/favorites", function(req, res){
     res.render("favorites", hbsObject);
   })
 }); 
+
+
 
 
 

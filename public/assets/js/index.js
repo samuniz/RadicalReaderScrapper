@@ -1,38 +1,53 @@
+// @ts-nocheck
 // Whenever someone clicks a p tag
-$(document).on("click", ".scrape", function() {
+// @ts-ignore
+$(document).on("click", ".scrape", function () {
+  // @ts-ignore
   $.ajax({
     method: "GET",
     url: "/scrape"
-  }).then(function(data){
+  }).then(function (data) {
     console.log("data", data)
     window.location.reload();
   })
 
 
-  });
+});
 // Save the articles 
-  $(document).on("click", ".save", function() {
-    console.log("You got clicked !", $(this).attr("id"))
+// @ts-ignore
+$(document).on("click", ".save", function () {
+  // console.log("You got clicked !", $(this).attr("id"))
 
-    $.ajax({
-      method: "PUT",
-      // PUT is update !
-      url: "/save/" + $(this).attr("id")
-    }).then(function(data){
-      console.log("data", data)
-      // window.location.reload();
-    })
-    });
+  // @ts-ignore
+  $.ajax({
+    method: "PUT",
+    // PUT is update !
+    // @ts-ignore
+    url: "/save/" + $(this).attr("id")
+  }).then(function (data) {
+    console.log("data", data)
+    window.location.reload();
+  })
+});
 
 // Add a note 
-  $(document).on("click", ".note", function() {
-    console.log("You got clicked !", $(this).attr("id"))
-    var thisId = $(this).attr("id");
+// @ts-ignore
+// $(document).on("click", ".note", function () {
+  // @ts-ignore
+  $(document).on("click", ".saveNote", function () {
+    event.preventDefault();
+    console.log("You got clicked !", $(this).attr("data-id"))
+    // @ts-ignore
+    var thisId = $(this).attr("data-id");
+    console.log(thisId)
+    var modalNote = $(".modalNote").text();
+    console.log(modalNote);
+    // @ts-ignore
     $.ajax({
       method: "GET",
-      url: "/note/" + thisId
+      url: "/article/" + thisId
       // Talk to new route I make to grab a single article
-    }).then(function(data){
+    }).then(function (data) {
       console.log("data", data)
       // $("#notes").append("<h2>" + data.title + "</h2>");
       // // An input to enter a new title
@@ -50,42 +65,51 @@ $(document).on("click", ".scrape", function() {
       //   $("#bodyinput").val(data.note.body);
       // }
     });
-});
-  
-    // Save Note
-    $(document).on("click", "#savenote", function() {
-      var thisId = $(this).attr("data-id");
+  })
+// });
 
-      $.ajax({
-        method: "POST",
-        url: "/note/" + thisId,
-        data:{
-          title: $("#titleinput").val(),
-          // Value taken from note textarea
-          body: $("#bodyinput").val()
-        }
-      })
-        // With that done
-        .then(function(data) {
-          // Log the response
-          console.log(data);
-          // Empty the notes section
-          $("#notes").empty();
-        });
-    
-      // Also, remove the values entered in the input and textarea for note entry
-      $("#titleinput").val("");
-      $("#bodyinput").val("");
-    });
-      
+// Save Note
+// @ts-ignore
+// $(document).on("click", "#savenote", function () {
+//   // @ts-ignore
+//   var thisId = $(this).attr("data-id");
 
-// On click index to save the note
-// Id of the article this.id 
+//   // @ts-ignore
+//   $.ajax({
+//     method: "POST",
+//     url: "/note/" + thisId,
+//     data: {
+//       // @ts-ignore
+//       title: $("#titleinput").val(),
+//       // Value taken from note textarea
+//       // @ts-ignore
+//       body: $("#bodyinput").val()
+//     }
+//   })
+//     // With that done
+//     .then(function (data) {
+//       // Log the response
+//       console.log(data);
+//       // Empty the notes section
+//       // @ts-ignore
+//       $("#notes").empty();
+//     });
+
+//   // Also, remove the values entered in the input and textarea for note entry
+//   // @ts-ignore
+//   $("#titleinput").val("");
+//   // @ts-ignore
+//   $("#bodyinput").val("");
+// });
 
 
-    // // Empty the notes from the note section
-  // $("#notes").empty();
-  // // Save the id from the p tag
+// // On click index to save the note
+// // Id of the article this.id 
+
+
+//     // // Empty the notes from the note section
+//   // $("#notes").empty();
+//   // // Save the id from the p tag
   // var thisId = $(this).attr("data-id");
 
   // // Now make an ajax call for the Article

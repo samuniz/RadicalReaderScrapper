@@ -58,44 +58,47 @@ router.put("/save/:id", function(req, res) {
   console.log("Smack the route", req.params.id);
 });
 
+// Get the article id and update the note value to true 
+router.get("/article/:id", function(req, res){
+  console.log("this is req.body", req.body)
+    db.Note.create(req.body)
+      .then(function(dbNote){
+        return db.Article.finOneAndUpdate({
+          _id:req.params.id}, { note: dbNote._id}, {new: true});
+        })
+        .then(function(dbArticle){
+          res.json(dbArticle)
+          console.log("This is DB Article: " + dbArticle)
+        })
+        .catch(function(err){
+          res.json(err);
+        })
+        // What should I send back to index ?
+  // res.send(res.body)
+      });
 
 
+// // Add a note 
+// router.get("/note/:id", function(req, res) {
+//   // db.Note.create(res.body)
+//   db.Article.findOne({ _id: req.params.id })
 
-// Add a note 
-router.get("/note/:id", function(req, res) {
-  // db.Note.create(res.body)
-  db.Article.findOne({ _id: req.params.id })
-
-  .populate("Note")
-    .then(function(dbArticle) {
-      // If we were able to successfully find an Article with the given id, send it back to the client
-      res.json(dbArticle);
-    })
-    .catch(function(err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-  // .then(function(data,err){
-  //   console.log("err", err, "data", data)
-  })
-  console.log("Smack the route", req.params.id);
-  res.json(req.params); 
-});
+//   .populate("Note")
+//     .then(function(dbArticle) {
+//       // If we were able to successfully find an Article with the given id, send it back to the client
+//       res.json(dbArticle);
+//     })
+//     .catch(function(err) {
+//       // If an error occurred, send it to the client
+//       res.json(err);
+//   // .then(function(data,err){
+//   //   console.log("err", err, "data", data)
+//   })
+//   console.log("Smack the route", req.params.id);
+//   res.json(req.params); 
+// });
 
 
-router.post("/article/:id", function(req, res){
-console.log("this is req.body", req.body)
-  db.Note.create(req.body)
-    .then(function(dbNote){
-      return db.Article.finOneAndUpdate({
-        _id:req.params.id}, { note: dbNote._id}, {new: true});
-      })
-      .then(function(dbArticle){
-        res.json(dbArticle)
-      })
-      .catch(function(err){
-        res.json(err);
-      })
-    });
 
 // // res send 
 module.exports = router;
