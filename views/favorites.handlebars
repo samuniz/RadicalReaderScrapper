@@ -1,0 +1,14 @@
+<h1>Favorites</h1>
+<ul>
+  <div id="notes"></div>
+  {{#each article}}
+   <h2>{{this.title}}</h2>
+   	<button class="note" id={{this._id}}>
+		 Add Note
+	  </button>
+    <button class="remove" id={{this._id}}>
+		 Remove
+	  </button>
+  {{/each}}
+
+</ul>

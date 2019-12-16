@@ -9,7 +9,8 @@ var ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   image: {
     type: String,
@@ -31,8 +32,15 @@ var ArticleSchema = new Schema({
   date: {
     type: Date,
     required: true
+  },
+  favorite:{
+    type: Boolean, 
+    default: false
+  },
+  note: {
+    type: Schema.Types.ObjectId,
+    ref: "Note"
   }
-
   
 });
 

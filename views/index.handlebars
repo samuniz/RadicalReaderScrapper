@@ -1,16 +1,33 @@
-<h1>Cats!</h1>
+	<button class="scrape">
+		Scrape
+	</button>
 
-<h2>Cats that are not sleepy!</h2>
+	<button class="clear">
+		Clear 
+	</button>
 
 <ul>
-  {{#each cats}}
-    {{#unless sleepy}}
-      {{> cats/cat-block sleep=true}}
-    {{/unless}}
+  {{#each article}}
+   <h2>{{this.title}}</h2>
+   	<button class="save" id={{this._id}}>
+		  Save Article 
+	  </button>
   {{/each}}
+
 </ul>
 
-<h2>Cats that are sleepy!</h2>
+
+
+
+	{{!-- <button class="save" data-id="{{article-id}}">
+		Save Article
+	</button>
+
+	<button class="note" data-id="{{article-id}}">
+		Add Note 
+	</button> --}}
+
+{{!-- <h2>Cats that are sleepy!</h2>
 
 <ul>
   {{#each cats}}
@@ -24,7 +41,7 @@
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">Cat Name:</label>
+    <label for="cat">Cat Name:</label>
     <input type="text" id="ca" name="name">
   </div>
 
@@ -35,4 +52,4 @@
   </div>
 
   <button type="submit">Add Cat</button>
-</form>
+</form> --}}

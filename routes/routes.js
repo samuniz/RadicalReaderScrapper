@@ -4,7 +4,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var router = express.Router();
 
-var db = require("../models/index");
+var db = require("../models");
 
 // A GET route for scraping the echoJS website
 router.get("/scrape", function(req, res) {
@@ -36,7 +36,7 @@ router.get("/scrape", function(req, res) {
       db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
-          console.log(dbArticle);
+          // console.log(dbArticle);
         })
         .catch(function(err) {
           // If an error occurred, log it
@@ -49,4 +49,53 @@ router.get("/scrape", function(req, res) {
   });
 });
 
+// Route for saving 
+router.put("/save/:id", function(req, res) {
+  db.Article.updateOne({_id:req.params.id},{favorite:true})
+  .then(function(data,err){
+    console.log("err", err, "data", data)
+  })
+  console.log("Smack the route", req.params.id);
+});
+
+
+
+
+// Add a note 
+router.get("/note/:id", function(req, res) {
+  // db.Note.create(res.body)
+  db.Article.findOne({ _id: req.params.id })
+
+  .populate("Note")
+    .then(function(dbArticle) {
+      // If we were able to successfully find an Article with the given id, send it back to the client
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+  // .then(function(data,err){
+  //   console.log("err", err, "data", data)
+  })
+  console.log("Smack the route", req.params.id);
+  res.json(req.params); 
+});
+
+
+router.post("/article/:id", function(req, res){
+console.log("this is req.body", req.body)
+  db.Note.create(req.body)
+    .then(function(dbNote){
+      return db.Article.finOneAndUpdate({
+        _id:req.params.id}, { note: dbNote._id}, {new: true});
+      })
+      .then(function(dbArticle){
+        res.json(dbArticle)
+      })
+      .catch(function(err){
+        res.json(err);
+      })
+    });
+
+// // res send 
 module.exports = router;
