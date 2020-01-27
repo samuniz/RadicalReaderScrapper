@@ -1,19 +1,7 @@
-li {
-  padding: 5px;
-  margin: 5px;
-  background: #faebd7;
+nav, .page-footer{
+  background-color: darkred	;
 }
 
-.label {
-  font-weight: bold;
-}
-
-.create-update-form {
-  padding: 5px;
-  margin: 5px;
-  background: aqua;
-}
-
-.form-group {
-  margin-bottom: 5px;
+.card-action a  {
+  color: darkred; 
 }

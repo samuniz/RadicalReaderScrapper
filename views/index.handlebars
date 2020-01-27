@@ -1,75 +1,20 @@
-	<button class="scrape">
-		Scrape
-	</button>
 
-	<button class="clear">
-		Clear 
-	</button>
-
-
-<div col-md-12>
+<div class="row">
   {{#each article}}
-  <div class="card">
-    <div class="row no-gutters">
-    <div class="col-md-4">
-   <img src="{{this.image}}"alt="Article image"class="card-img" >
-    <div class="col-md-8">
-      <div class="card-body">
-    <h4 class="card-title">{{this.title}}</h4>
-
-   <p class="card-text">{{this.body}}</p>
-      <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
-
-   <a href="{{this.link}}">Read More</a>
-   {{!-- <date>{{this.date}}</date> --}}
-
-    	<button class="save" id={{this._id}}>
-		  Save Article 
-	  </button>
+  <div class="col m6">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{image}}">
+        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
+      </div>
+      <div class="card-content">
+        <span class="card-title">{{title}}</span>
+        <p>{{body}}</p>
+      </div>
+      <div class="card-action">
+        <a class="link" href="{{link}}">Read More</a>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    
+  </div>
   {{/each}}
 </div>
-
-
-
-
-
-	{{!-- <button class="save" data-id="{{article-id}}">
-		Save Article
-	</button>
-
-	<button class="note" data-id="{{article-id}}">
-		Add Note 
-	</button> --}}
-
-{{!-- <h2>Cats that are sleepy!</h2>
-
-<ul>
-  {{#each cats}}
-    {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Cat</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="cat">Cat Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="sleepy">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
-  </div>
-
-  <button type="submit">Add Cat</button>
-</form> --}}

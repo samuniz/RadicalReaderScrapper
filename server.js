@@ -1,38 +1,34 @@
-var express = require("express");
-var mongoose = require("mongoose");
 
-var app = express();
-var PORT = 3000;
+const mongoose = require("mongoose");
+// var axios = require("axios"); 
+const PORT = process.env.PORT || 3000;
 
+//initialize Express app
+const express = require("express");
+const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// Make public a static folder
 app.use(express.static("public"));
 
-var exphbs = require("express-handlebars");
+//Require set up handlebars
+const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
 // Import routes and give the server access to them.
-var routes = require("./routes/routes");
-var htmlRoutes = require("./routes/htmlRoutes")
-// Hook it up the routes 
+const routes = require("./routes/routes");
+const htmlRoutes = require("./routes/htmlRoutes")
+// Hook up routes 
 app.use(routes);
 app.use(htmlRoutes);
-// Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || 
-  "mongodb://scraper:scraper1@ds055594.mlab.com:55594/heroku_dnrt5drc",
-  // "mongodb://radicalReaders:radical1@ds253368.mlab.com:53368/heroku_6br9pzm3", 
-  {
-    useMongoClient: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  },
 
-);
+// Connect to the Mongo DB
+
+const MONGODB_URI = process.env.MONGODB_URI || 
+"mongodb://scraper:scraper1@ds055594.mlab.com:55594/heroku_dnrt5drc";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.set('useCreateIndex', true);
 
 // Start the server
 app.listen(PORT, function() {

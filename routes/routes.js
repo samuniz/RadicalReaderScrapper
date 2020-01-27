@@ -21,8 +21,8 @@ router.get("/scrape", function(req, res) {
         .children(".entry-content").find("h3").text();
       result.image = $(this)
         .children("figure").find("img").attr("src");
-      result.category = $(this)
-        .children(".entry-content").find(".entry-meta").find("a").text(); 
+      // result.category = $(this)
+      //   .children(".entry-content").find(".entry-meta").find("a").text(); 
       result.body = $(this)
         .children(".entry-content").children(".entry-excerpt").text();
       result.link = $(this)
