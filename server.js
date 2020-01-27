@@ -24,7 +24,7 @@ app.use(htmlRoutes);
 // Connect to the Mongo DB
 mongoose.connect(
   process.env.MONGODB_URI || 
-  "mongodb://scraper:scraper1@ds213529.mlab.com:13529/heroku_jgb1kn5m",
+  "mongodb://scraper:scraper1@ds055594.mlab.com:55594/heroku_dnrt5drc",
   // "mongodb://radicalReaders:radical1@ds253368.mlab.com:53368/heroku_6br9pzm3", 
   {
     useMongoClient: true,
