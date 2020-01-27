@@ -73,8 +73,7 @@ router.get("/article/:id", function(req, res){
         .catch(function(err){
           res.json(err);
         })
-        // What should I send back to index ?
-  // res.send(res.body)
+        // res.send("Id")
       });
 
 

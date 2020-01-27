@@ -6,6 +6,7 @@ var PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Make public a static folder
 app.use(express.static("public"));
 
@@ -20,13 +21,13 @@ var htmlRoutes = require("./routes/htmlRoutes")
 // Hook it up the routes 
 app.use(routes);
 app.use(htmlRoutes);
-
 // Connect to the Mongo DB
 mongoose.connect(
-  // process.env.MONGODB_URI || 
-"mongodb://localhost/unit18Populater", 
+  process.env.MONGODB_URI || 
+  "mongodb://scraper:scraper1@ds213529.mlab.com:13529/heroku_jgb1kn5m",
   // "mongodb://radicalReaders:radical1@ds253368.mlab.com:53368/heroku_6br9pzm3", 
   {
+    useMongoClient: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   },
