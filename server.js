@@ -17,18 +17,18 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 const routes = require("./routes/routes");
+app.use(routes);
+
 const htmlRoutes = require("./routes/htmlRoutes")
 // Hook up routes 
-app.use(routes);
 app.use(htmlRoutes);
 
 // Connect to the Mongo DB
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-const MONGODB_URI = process.env.MONGODB_URI || 
-"mongodb://scraper:scraper1@ds055594.mlab.com:55594/heroku_dnrt5drc";
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
+
 
 // Start the server
 app.listen(PORT, function() {
