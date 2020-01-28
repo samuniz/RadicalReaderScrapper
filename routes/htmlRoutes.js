@@ -18,6 +18,7 @@ router.get("/", function(req, res){
   })
 }); 
 
+
 // // Favorites Page 
 // router.get("/favorites", function(req, res){
 //   db.Article.find({favorite: true},function(err, data){

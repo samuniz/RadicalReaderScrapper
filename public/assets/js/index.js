@@ -11,6 +11,18 @@ $("#scrape").on("click", function (event) {
 
 });
 
+$("#clear").on("click", function (event) {
+  console.log("deleted !")
+  event.preventDefault();
+  $.ajax({
+    method: "GET",
+    url: "/clear"
+  }).then(function (data) {
+    window.location.reload();
+  })
+
+});
+
 // $(function () {
   // $("#scrape").on("click", function (event) {
   //   event.preventDefault();

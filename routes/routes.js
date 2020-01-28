@@ -45,6 +45,18 @@ router.get("/scrape", function(req, res) {
   });
 });
 
+// Route for delete articles 
+router.get("/clear", function(req, res){
+  db.Article.remove({}, function(err, doc){
+    if(err){
+      console.log(err);
+    } else{
+      console.log("removed all articles");
+    }
+    res.redirect("/");
+  })
+})
+
 
 // module.exports = router;
 // // Route for saving 
