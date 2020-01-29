@@ -1,7 +1,26 @@
+main{
+  background-color: #404040;
+}
+
+.brand-logo{
+  font-family: 'Playfair Display SC', serif;
+}
+
 nav, .page-footer{
+  font-family: 'Playfair Display SC', serif;
+  font-size: 20px;
   background-color: darkred	;
 }
 
+.nav-wrapper{
+  margin: 0 1%; 
+}
+
+.card-content{
+    min-height: 200px; 
+    overflow: hidden;
+}
+}
 .card-action a  {
   color: darkred; 
 }
