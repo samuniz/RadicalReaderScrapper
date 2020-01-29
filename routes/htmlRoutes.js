@@ -13,22 +13,20 @@ router.get("/", function(req, res){
     var hbsObject = {
       article: data  
     };
-// console.log("This is hdsObject", hbsObject);
     res.render("index", hbsObject);
   })
 }); 
 
-
-// // Favorites Page 
-// router.get("/favorites", function(req, res){
-//   db.Article.find({favorite: true},function(err, data){
-//     var hbsObject = {
-//       article: data
-//     };
-//     console.log("This is hdsObject", hbsObject);
-//     res.render("favorites", hbsObject);
-//   })
-// }); 
+// Favorites Page 
+router.get("/favorites", function(req, res){
+  db.Article.find({favorite: true},function(err, data){
+    var hbsObject = {
+      article: data
+    };
+    console.log("This is hdsObject", hbsObject);
+    res.render("favorites", hbsObject);
+  })
+}); 
 
 
 

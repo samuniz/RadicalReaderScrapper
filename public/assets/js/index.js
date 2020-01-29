@@ -23,6 +23,7 @@ $("#clear").on("click", function (event) {
 
 });
 
+
 // $(function () {
   // $("#scrape").on("click", function (event) {
   //   event.preventDefault();
@@ -43,17 +44,35 @@ $("#clear").on("click", function (event) {
   //   });
   // });
 // Save the articles 
+$(document).on("click", ".addFavorites", function () {
+  console.log("You got clicked !")
+  let articleId = $(this).attr("data-id");
+  console.log("article Id front end", articleId)
+
+  $.ajax({
+    method: "PUT",
+    // PUT is update !
+    url: "/favorites/" + articleId,
+    data: { saved: true }
+  }).then(function () {
+    // console.log("data")
+    window.location.reload();
+  })
+});
 // @ts-ignore
-// $(document).on("click", ".saveNote", function () {
-//   console.log("You got clicked !")
+// $(".addFavorites").on("click", function () {
+//   // console.log("You got clicked !")
+//   // event.preventDefault();
+//   let articleId = $(this).attr("id");
+//   console.log("article Id front end", articleId)
 //   $.ajax({
-//     method: "PUT",
+//     type: "PUT",
 //     // PUT is update !
-//     // @ts-ignore
-//     url: "/save/" + $(this).attr("id")
+//     url: "/favorites/article/" + articleId, 
+    
 //   }).then(function (data) {
 //     console.log("data", data)
-//     window.location.reload();
+//     // window.location.reload();
 //   })
 // });
 

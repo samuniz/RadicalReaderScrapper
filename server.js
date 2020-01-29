@@ -1,4 +1,5 @@
-
+const bodyParser = require("body-parser");
+const logger = require("morgan");
 const mongoose = require("mongoose");
 // var axios = require("axios"); 
 const PORT = process.env.PORT || 3000;
@@ -20,15 +21,18 @@ const routes = require("./routes/routes");
 app.use(routes);
 
 const htmlRoutes = require("./routes/htmlRoutes")
-// Hook up routes 
 app.use(htmlRoutes);
 
 // Connect to the Mongo DB
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/radical-reads-scrape";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function() {
+  console.log("Connected to Mongoose!");
+});
 
 // Start the server
 app.listen(PORT, function() {
