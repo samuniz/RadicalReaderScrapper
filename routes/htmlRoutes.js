@@ -23,7 +23,7 @@ router.get("/favorites", function(req, res){
     var hbsObject = {
       article: data
     };
-    console.log("This is hdsObject", hbsObject);
+    // console.log("This is hdsObject", hbsObject);
     res.render("favorites", hbsObject);
   })
 }); 

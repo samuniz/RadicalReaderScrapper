@@ -17,10 +17,10 @@ nav, .page-footer{
 }
 
 .card-content{
-    min-height: 200px; 
+    height: 200px; 
     overflow: hidden;
 }
-}
+
 .card-action a  {
   color: darkred; 
 }

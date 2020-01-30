@@ -32,7 +32,7 @@ router.get("/scrape", function (req, res) {
         db.Article.create(result)
           .then(function (dbArticle) {
             // View the added result in the console
-            console.log("This is dbArticle", dbArticle);
+            // console.log("This is dbArticle", dbArticle);
           })
           .catch(function (err) {
             // If an error occurred, log it
@@ -58,7 +58,7 @@ router.get("/clear", function (req, res) {
 })
 
 router.put("/favorites/:id", function (req, res) {
-  console.log("req.params.id", req.params.id)
+  // console.log("req.params.id", req.params.id)
   db.Article.findOneAndUpdate(
     { _id: req.params.id },
     { favorite: true })
@@ -70,80 +70,26 @@ router.put("/favorites/:id", function (req, res) {
     })
 });
 
+// Get the article id and update the note value to true 
+router.post("/articles/:id", function(req, res){
+  console.log("req.body", req.body)
+    db.Note.create(req.body)
+      .then(function(dbNote){
+        return db.Article.findOneAndUpdate(
+          {_id:req.params.id}, 
+          { $push:
+            { note: dbNote._id}
+          }, {new: true});
+        })
+        .then(function(dbArticle){
+          res.json(dbArticle)
+        })
+        .catch(function(err){
+          res.json(err);
+        })
+      });
 
 
-// router.put("/favorites/:id", function (req, res) {
-//   var articleId = req.params._id;
-
-//   console.log("req.params", req.params)
-//   db.Article.findOneAndUpdate(
-//       { _id: articleId },
-//       {
-//           $set: {
-//               favorite: true
-//           }
-//       }
-//   )
-//       .then(function (dbSave) {
-//           res.json(dbSave)
-//       })
-//       .catch(function (err) {
-//           res.json(err);
-//       })
-// });
-
-// // Route for saving 
-// router.put("/save/:id", function(req, res) {
-//   db.Article.updateOne({_id:req.params.id},{favorite:true})
-//   .then(function(data,err){
-//     console.log("err", err, "data", data)
-//   })
-//   console.log("Smack the route", req.params.id);
-// });
-
-// Route for saving 
-
-
-
-// // Get the article id and update the note value to true 
-// router.get("/article/:id", function(req, res){
-//   console.log("this is req.body", req.body)
-//     db.Note.create(req.body)
-//       .then(function(dbNote){
-//         return db.Article.finOneAndUpdate({
-//           _id:req.params.id}, { note: dbNote._id}, {new: true});
-//         })
-//         .then(function(dbArticle){
-//           res.json(dbArticle)
-//           console.log("This is DB Article: " + dbArticle)
-//         })
-//         .catch(function(err){
-//           res.json(err);
-//         })
-//         // res.send("Id")
-//       });
-
-
-
-// // Add a note 
-// router.get("/note/:id", function(req, res) {
-//   // db.Note.create(res.body)
-//   db.Article.findOne({ _id: req.params.id })
-
-//   .populate("Note")
-//     .then(function(dbArticle) {
-//       // If we were able to successfully find an Article with the given id, send it back to the client
-//       res.json(dbArticle);
-//     })
-//     .catch(function(err) {
-//       // If an error occurred, send it to the client
-//       res.json(err);
-//   // .then(function(data,err){
-//   //   console.log("err", err, "data", data)
-//   })
-//   console.log("Smack the route", req.params.id);
-//   res.json(req.params); 
-// });
 
 
 

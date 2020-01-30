@@ -1,3 +1,14 @@
+
+    $(document).ready(function(){
+        $(".modal").modal();
+    });
+
+    $(document).ready(function() {
+      M.updateTextFields();
+    });
+    M.updateTextFields()
+
+
 $("#scrape").on("click", function (event) {
   console.log("scraped !")
   event.preventDefault();
@@ -23,29 +34,9 @@ $("#clear").on("click", function (event) {
 
 });
 
-
-// $(function () {
-  // $("#scrape").on("click", function (event) {
-  //   event.preventDefault();
-  //   // $("#scraping-articles-modal").modal("show");
-  //   $.ajax({
-  //     url: "/scrape",
-  //     type: "GET",
-  //     success: function (result) {
-  //       $("#scraping-articles-modal").modal("hide");
-  //       $(".modal-body").text(result.message);
-  //       $("#articles-scraped-modal").modal("show");
-  //     },
-      // error: function () {
-        // $("#scraping-articles-modal").modal("hide");
-        // $(".modal-body").text("Could not scrape at this time");
-        // $("#articles-scraped-modal").modal("show");
-      // }
-  //   });
-  // });
 // Save the articles 
 $(document).on("click", ".addFavorites", function () {
-  console.log("You got clicked !")
+  // console.log("You got clicked !")
   let articleId = $(this).attr("data-id");
   console.log("article Id front end", articleId)
 
@@ -59,6 +50,26 @@ $(document).on("click", ".addFavorites", function () {
     window.location.reload();
   })
 });
+
+
+$(".saveComment").on("click", function () {
+  let articleId = $(this).attr("data-id");
+  let name = $("#name-" + articleId).val();
+  let text = $("#text-" + articleId).val();
+  console.log(articleId, "name", name,"text", text)
+  $.ajax({
+    method: "POST",
+    url: "/articles/" + articleId,
+    data: {
+      name: name,
+      text: text
+    }
+  }).then(function (data) {
+    console.log("data", data)
+  })
+});
+
+
 // @ts-ignore
 // $(".addFavorites").on("click", function () {
 //   // console.log("You got clicked !")
