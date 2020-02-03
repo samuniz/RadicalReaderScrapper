@@ -70,6 +70,20 @@ router.put("/favorites/:id", function (req, res) {
     })
 });
 
+router.put("/favoritesdelete/:id", function (req, res) {
+  // console.log("req.params.id", req.params.id)
+  db.Article.findOneAndUpdate(
+    { _id: req.params.id },
+    { favorite: false })
+    .then(function (dbSave) {
+      res.json(dbSave)
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+});
+
+
 // Get the article id and update the note value to true 
 router.post("/articles/:id", function(req, res){
   console.log("req.body", req.body)

@@ -50,6 +50,22 @@ $(document).on("click", ".addFavorites", function () {
     window.location.reload();
   })
 });
+// Dislike Article
+$(document).on("click", ".deleteFavorites", function () {
+  console.log("You got clicked !")
+  let articleId = $(this).attr("data-id");
+  console.log("article Id front end", articleId)
+
+  $.ajax({
+    method: "PUT",
+    // PUT is update !
+    url: "/favoritesdelete/" + articleId,
+    data: { saved: false }
+  }).then(function () {
+    // console.log("data")
+    window.location.reload();
+  })
+});
 
 
 $(".saveComment").on("click", function () {

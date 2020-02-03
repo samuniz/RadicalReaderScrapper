@@ -25,8 +25,12 @@ app.use(htmlRoutes);
 
 // Connect to the Mongo DB
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/radical-reads-scrape";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
