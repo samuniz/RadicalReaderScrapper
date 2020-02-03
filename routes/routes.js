@@ -77,7 +77,7 @@ router.post("/articles/:id", function(req, res){
       .then(function(dbNote){
         return db.Article.findOneAndUpdate(
           {_id:req.params.id}, 
-          { $push:
+          { $push: 
             { note: dbNote._id}
           }, {new: true});
         })

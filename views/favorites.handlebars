@@ -13,12 +13,17 @@
         <span class="card-title">{{title}}</span>
         <p>{{body}}</p>
       </div>
-      <div class="card-action">
-        <a class= "link modal-trigger" href="#comment" data-id="{{_id}}">Comment</a>
+      <div class="card-action" id="favoritesCard">
+        <a class= "waves-effect waves-light btn link modal-trigger" id="addComment" href="#comment" data-id="{{_id}}">Add a Comment</a>
+        <a class= "waves-effect waves-light btn link modal-trigger" id="displayComment" href="#commentDisplay" data-id="{{_id}}">Display Comments</a>
+      </div>
+      <div class="card-action" id="readMore" >
+        <a class="link" href="{{link}}">Read More</a>
+
       </div>
     </div>
   </div>
-  <!-- Modal Structure -->
+  <!-- Add Comment Modal-->
 <div id="comment" class="modal" data-id="{{_id}}">
   <div class="modal-content">
      <div class="row">
@@ -36,11 +41,24 @@
     </div>
     <div class="modal-footer">
       <a class="saveComment modal-close waves-effect btn-flat" type="submit" data-id="{{_id}}" >Save</a>
-      <a class="saveComment modal-close waves-effect btn-flat">Close</a>
+      <a class="deleteComment modal-close waves-effect btn-flat" type="delete" data-id="{{_id}}">Delete</a>
+
+      <a class="modal-close waves-effect btn-flat">Close</a>
+     
     </div>
   </div>
  </div>
 
+<!-- Display Comment Modal-->
+<div id="commentDisplay" class="modal" data-id="{{_id}}">
+    <div class="modal-content">
+      <h4>Comments</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+ </div>
   {{/each}}
 </div>
 

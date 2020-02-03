@@ -1,9 +1,15 @@
-main{
+body{
   background-color: #404040;
 }
 
-.brand-logo{
+.brand-logo, h1{
   font-family: 'Playfair Display SC', serif;
+}
+
+h1{
+  text-align: center;
+  color: white; 
+  font-size: 3rem; 
 }
 
 nav, .page-footer{
@@ -23,4 +29,32 @@ nav, .page-footer{
 
 .card-action a  {
   color: darkred; 
+}
+
+#favoritesCard a{
+  color: white
+}
+
+#addComment, #displayComment{
+  background-color: gray;
+}
+
+#readMore a{
+  color: red
+}
+
+#cardLink a{
+  color: red; 
+}
+
+footer{
+  text-align: center; 
+  padding-bottom: 0.5%;
+  margin: 0%; 
+}
+
+footer p{
+  padding: 0;
+  margin: 0; 
+  font-size: 1rem;
 }

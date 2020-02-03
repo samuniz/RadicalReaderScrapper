@@ -28,7 +28,15 @@ router.get("/favorites", function(req, res){
   })
 }); 
 
+// Notes Modal 
+// router.get("/articles/:id", function(req, res){
+//   //grab the article id
+//   // grab the note from that article
+//   // display name and text
 
+
+//   })
+// })
 
 
 

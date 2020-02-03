@@ -69,6 +69,10 @@ $(".saveComment").on("click", function () {
   })
 });
 
+// get the note from specific id
+// create button to display notes
+
+
 
 // @ts-ignore
 // $(".addFavorites").on("click", function () {
