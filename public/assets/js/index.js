@@ -1,4 +1,4 @@
-
+// Modal function from Materialize
     $(document).ready(function(){
         $(".modal").modal();
     });
@@ -8,7 +8,7 @@
     });
     M.updateTextFields()
 
-
+// Scrape website 
 $("#scrape").on("click", function (event) {
   console.log("scraped !")
   event.preventDefault();
@@ -22,6 +22,7 @@ $("#scrape").on("click", function (event) {
 
 });
 
+// Delete all articles 
 $("#clear").on("click", function (event) {
   console.log("deleted !")
   event.preventDefault();
@@ -34,12 +35,11 @@ $("#clear").on("click", function (event) {
 
 });
 
-// Save the articles 
+// Favorite article
 $(document).on("click", ".addFavorites", function () {
   // console.log("You got clicked !")
   let articleId = $(this).attr("data-id");
   console.log("article Id front end", articleId)
-
   $.ajax({
     method: "PUT",
     // PUT is update !
@@ -50,12 +50,13 @@ $(document).on("click", ".addFavorites", function () {
     window.location.reload();
   })
 });
+
+
 // Dislike Article
 $(document).on("click", ".deleteFavorites", function () {
   console.log("You got clicked !")
   let articleId = $(this).attr("data-id");
   console.log("article Id front end", articleId)
-
   $.ajax({
     method: "PUT",
     // PUT is update !
@@ -67,7 +68,7 @@ $(document).on("click", ".deleteFavorites", function () {
   })
 });
 
-
+//Save Comments 
 $(".saveComment").on("click", function () {
   let articleId = $(this).attr("data-id");
   let name = $("#name-" + articleId).val();
@@ -75,7 +76,7 @@ $(".saveComment").on("click", function () {
   console.log(articleId, "name", name,"text", text)
   $.ajax({
     method: "POST",
-    url: "/articles/" + articleId,
+    url: "/article/" + articleId,
     data: {
       name: name,
       text: text
@@ -84,6 +85,27 @@ $(".saveComment").on("click", function () {
     console.log("data", data)
   })
 });
+
+
+// Display comments
+// $(".displayComment").on("click", function () {
+//   let articleId = $(this).attr("data-id");
+//   let name = $("#name-" + articleId).val();
+//   let text = $("#text-" + articleId).val();
+//   console.log("article id", articleId, name, text)
+//   console.log(articleId, "name", name,"text", text)
+//   $.ajax({
+//     method: "GET",
+//     url: "/note/" + articleId,
+//     data: {
+//       name: name,
+//       text: text
+//     }
+//   }).then(function (data) {
+//     console.log("data", data)
+//   })
+// });
+
 
 // get the note from specific id
 // create button to display notes

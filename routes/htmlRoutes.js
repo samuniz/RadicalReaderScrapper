@@ -18,25 +18,38 @@ router.get("/", function(req, res){
 }); 
 
 // Favorites Page 
-router.get("/favorites", function(req, res){
-  db.Article.find({favorite: true},function(err, data){
-    var hbsObject = {
-      article: data
-    };
-    // console.log("This is hdsObject", hbsObject);
-    res.render("favorites", hbsObject);
-  })
-}); 
 
-// Notes Modal 
-// router.get("/articles/:id", function(req, res){
-//   //grab the article id
-//   // grab the note from that article
-//   // display name and text
+router.get("/favorites", function(req, res) {
+  db.Article.find({favorite: true})
+    .sort({ _id: -1 })
+    .populate("note")
+    .exec(function(err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        const artcl = { article: data };
+        res.render("favorites", artcl);
+      }
+    });
+});
 
 
-//   })
+// router.get("/favorites", function (req, res) {
+//   db.Article.find({ "favorite": true })
+//     .populate("note")
+//     .then(function (dbArticle) {
+//       const hbsObject = {
+//         articles: dbArticle
+//       };
+//       res.render("favorites", hbsObject);
+//     })
+//     .catch(function (err) {
+//       res.json(err);
+//     });
 // })
+
+
+
 
 
 

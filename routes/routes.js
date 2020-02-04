@@ -4,7 +4,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("../models");
 
-// A GET route for scraping the echoJS website
+// Scrape radical reads
 router.get("/scrape", function (req, res) {
   // First, we grab the body of the html with axios
   axios.get("https://radicalreads.com/")
@@ -45,7 +45,7 @@ router.get("/scrape", function (req, res) {
     });
 });
 
-// Route for delete articles 
+//Delete all articles 
 router.get("/clear", function (req, res) {
   db.Article.remove({}, function (err, doc) {
     if (err) {
@@ -57,19 +57,7 @@ router.get("/clear", function (req, res) {
   })
 })
 
-router.put("/favorites/:id", function (req, res) {
-  // console.log("req.params.id", req.params.id)
-  db.Article.findOneAndUpdate(
-    { _id: req.params.id },
-    { favorite: true })
-    .then(function (dbSave) {
-      res.json(dbSave)
-    })
-    .catch(function (err) {
-      res.json(err);
-    })
-});
-
+// Dislike an article 
 router.put("/favoritesdelete/:id", function (req, res) {
   // console.log("req.params.id", req.params.id)
   db.Article.findOneAndUpdate(
@@ -83,9 +71,24 @@ router.put("/favoritesdelete/:id", function (req, res) {
     })
 });
 
+// Favorite an article
+router.put("/favorites/:id", function (req, res) {
+  event.preventDefault();
+  // console.log("req.params.id", req.params.id)
+  db.Article.findOneAndUpdate(
+    { _id: req.params.id },
+    { favorite: true })
+    .then(function (dbSave) {
+      res.json(dbSave)
+      location.reload();
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+});
 
-// Get the article id and update the note value to true 
-router.post("/articles/:id", function(req, res){
+// Save comment
+router.post("/article/:id", function(req, res){
   console.log("req.body", req.body)
     db.Note.create(req.body)
       .then(function(dbNote){
@@ -103,10 +106,20 @@ router.post("/articles/:id", function(req, res){
         })
       });
 
+// Display a Comment 
+// router.get("/note/:id", function (req, res) {
+//   console.log("req.params", req.params)  
+//   db.Note.findById(
+//     { _id: req.params.id },
+//     { name: req.params.name }, 
+//     {text: req.params.text})
+//     .then(function (data) {
+//       res.json(data)
+//     })
+
+// });
 
 
-
-
-
+   
 
 module.exports = router; 

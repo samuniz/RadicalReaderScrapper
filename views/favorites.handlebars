@@ -14,53 +14,47 @@
         <p>{{body}}</p>
       </div>
       <div class="card-action" id="favoritesCard">
-        <a class= "waves-effect waves-light btn link modal-trigger" id="addComment" href="#comment" data-id="{{_id}}">Add a Comment</a>
-        <a class= "waves-effect waves-light btn link modal-trigger" id="displayComment" href="#commentDisplay" data-id="{{_id}}">Display Comments</a>
+        <a class="waves-effect waves-light btn link modal-trigger" id="addComment" href="#comment" data-id="{{_id}}">Add
+          a Comment</a>
       </div>
-      <div class="card-action" id="readMore" >
+      <div class="card-action" id="readMore">
         <a class="link" href="{{link}}">Read More</a>
 
       </div>
     </div>
   </div>
   <!-- Add Comment Modal-->
-<div id="comment" class="modal" data-id="{{_id}}">
-  <div class="modal-content">
-     <div class="row">
-       
-       <div class="input-field">
+  <div id="comment" class="modal" data-id="{{_id}}">
+    <div class="modal-content">
+      <div class="row">
+        <div class="input-field">
           <input placeholder="Name" type="text" class="validate" id="name-{{id}}">
           <label for="first_name">Name</label>
-      </div>
+        </div>
       </div>
       <div class="row">
-    <div class="input-field">
-      <input placeholder="Comment" type="text" class="textarea" id="text-{{id}}">
-      <label for="text">Comment</label>
-    </div>
-    </div>
-    <div class="modal-footer">
-      <a class="saveComment modal-close waves-effect btn-flat" type="submit" data-id="{{_id}}" >Save</a>
-      <a class="deleteComment modal-close waves-effect btn-flat" type="delete" data-id="{{_id}}">Delete</a>
+        <div class="input-field">
+          <input placeholder="Comment" type="text" class="textarea" id="text-{{id}}">
+          <label for="text">Comment</label>
+        </div>
+      </div>
+      <div>
+        <a class="saveComment waves-effect btn-flat" type="submit" data-id="{{_id}}">Save</a>
+        <a class="modal-close waves-effect btn-flat">Close</a>
+      </div>
+      <hr>
+            <div class="row">
+        <div class="notes" data-id={{_id}}>
+          {{#note}}
+          <a data-id="{{_id}}" class="deleteNote btn-floating halfway-fab waves-effect waves-light red"><i
+              class="material-icons">delete</i></a>
+          <small>{{name}}</small>
+          <p>{{text}}</p>
+          {{/note}}
+        </div>
+      </div>
 
-      <a class="modal-close waves-effect btn-flat">Close</a>
-     
     </div>
   </div>
- </div>
-
-<!-- Display Comment Modal-->
-<div id="commentDisplay" class="modal" data-id="{{_id}}">
-    <div class="modal-content">
-      <h4>Comments</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
- </div>
   {{/each}}
 </div>
-
-
- 
