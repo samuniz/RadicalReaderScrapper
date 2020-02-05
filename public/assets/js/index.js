@@ -27,16 +27,16 @@ $("#clear").on("click", function (event) {
   console.log("deleted !")
   event.preventDefault();
   $.ajax({
-    method: "GET",
-    url: "/clear"
-  }).then(function (data) {
-    window.location.reload();
+    type: "DELETE",
+    url: "/scrape"
+  }).then(function () {
+    location.reload();
   })
-
 });
 
 // Favorite an article
-$(document).on("click", ".addFavorites", function (event) {
+
+$(".addFavorites").on("click", function (event) {
   console.log("You got clicked !")
   event.preventDefault();  
   let articleId = $(this).attr("data-id");
@@ -54,25 +54,26 @@ $(document).on("click", ".addFavorites", function (event) {
 
 
 // Dislike Article
-$(document).on("click", ".deleteFavorites", function () {
+$(".deleteFavorites").on("click", function (event) {
   // console.log("You got clicked !")
   let articleId = $(this).attr("data-id");
   // console.log("article Id front end", articleId)
   $.ajax({
     method: "PUT",
     url: "/favoritesdelete/" + articleId,
-    data: { saved: false }
+    data: { favorite: false }
   }).then(function () {
-    window.location.reload();
+    location.reload();
   })
 });
 
 //Save Comments 
-$(".saveComment").on("click", function () {
+$(".saveComment").on("click", function (event) {
+  event.preventDefault();
   let articleId = $(this).attr("data-id");
   let name = $("#name-" + articleId).val();
   let text = $("#text-" + articleId).val();
-  console.log(articleId, "name", name,"text", text)
+  // console.log(articleId, "name", name,"text", text)
   $.ajax({
     method: "POST",
     url: "/favorites/" + articleId,
@@ -80,8 +81,8 @@ $(".saveComment").on("click", function () {
       name: name,
       text: text
     }
-  }).then(function (data) {
-    console.log("data", data)
+  }).then(function () {
+    console.log("article saved")
   })
 });
 

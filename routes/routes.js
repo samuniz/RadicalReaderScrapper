@@ -39,22 +39,24 @@ router.get("/scrape", function (req, res) {
             console.log(err);
           });
       });
-
       // Send a message to the client
       res.send("Scrape Complete");
     });
 });
 
 //Delete all articles 
-router.get("/clear", function (req, res) {
-  db.Article.remove({}, function (err, doc) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("removed all articles");
-    }
-    res.redirect("/");
-  })
+router.delete("/scrape", 
+function (req, res) {
+  db.Article.deleteMany({})
+   .then(function () {
+     return db.Note.deleteMany({});
+   })
+   .then(function (dbArticle){
+    res.json(dbArticle);
+   })
+   .catch(function(err){
+     res.json(err);
+   });
 })
 
 // Dislike an article 
