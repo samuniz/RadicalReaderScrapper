@@ -1,11 +1,10 @@
-const bodyParser = require("body-parser");
-const logger = require("morgan");
+const express = require("express");
+
 const mongoose = require("mongoose");
 // var axios = require("axios"); 
 const PORT = process.env.PORT || 3000;
 
 //initialize Express app
-const express = require("express");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -13,6 +12,7 @@ app.use(express.static("public"));
 
 //Require set up handlebars
 const exphbs = require("express-handlebars");
+
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 

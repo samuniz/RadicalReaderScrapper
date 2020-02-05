@@ -35,35 +35,34 @@ $("#clear").on("click", function (event) {
 
 });
 
-// Favorite article
-$(document).on("click", ".addFavorites", function () {
-  // console.log("You got clicked !")
+// Favorite an article
+$(document).on("click", ".addFavorites", function (event) {
+  console.log("You got clicked !")
+  event.preventDefault();  
   let articleId = $(this).attr("data-id");
   console.log("article Id front end", articleId)
   $.ajax({
-    method: "PUT",
     // PUT is update !
     url: "/favorites/" + articleId,
-    data: { saved: true }
+    type: "PUT",
+    data: { favorite: true }
   }).then(function () {
     // console.log("data")
-    window.location.reload();
-  })
+    location.reload();
+  }); 
 });
 
 
 // Dislike Article
 $(document).on("click", ".deleteFavorites", function () {
-  console.log("You got clicked !")
+  // console.log("You got clicked !")
   let articleId = $(this).attr("data-id");
-  console.log("article Id front end", articleId)
+  // console.log("article Id front end", articleId)
   $.ajax({
     method: "PUT",
-    // PUT is update !
     url: "/favoritesdelete/" + articleId,
     data: { saved: false }
   }).then(function () {
-    // console.log("data")
     window.location.reload();
   })
 });
@@ -76,7 +75,7 @@ $(".saveComment").on("click", function () {
   console.log(articleId, "name", name,"text", text)
   $.ajax({
     method: "POST",
-    url: "/article/" + articleId,
+    url: "/favorites/" + articleId,
     data: {
       name: name,
       text: text

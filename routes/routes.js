@@ -73,14 +73,18 @@ router.put("/favoritesdelete/:id", function (req, res) {
 
 // Favorite an article
 router.put("/favorites/:id", function (req, res) {
-  event.preventDefault();
+  let articleId = req.params.id
+  // event.preventDefault();
   // console.log("req.params.id", req.params.id)
   db.Article.findOneAndUpdate(
-    { _id: req.params.id },
-    { favorite: true })
-    .then(function (dbSave) {
-      res.json(dbSave)
-      location.reload();
+    { _id: articleId},
+    {
+      $set:{ 
+      favorite: true 
+      }
+    })
+    .then(function (dbArticle) {
+      res.json(dbArticle)
     })
     .catch(function (err) {
       res.json(err);
@@ -88,8 +92,9 @@ router.put("/favorites/:id", function (req, res) {
 });
 
 // Save comment
-router.post("/article/:id", function(req, res){
-  console.log("req.body", req.body)
+router.post("/favorites/:id", 
+function(req, res){
+  // console.log("req.body", req.body)
     db.Note.create(req.body)
       .then(function(dbNote){
         return db.Article.findOneAndUpdate(

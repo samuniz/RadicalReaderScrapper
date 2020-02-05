@@ -16,6 +16,8 @@
       <div class="card-action" id="favoritesCard">
         <a class="waves-effect waves-light btn link modal-trigger" id="addComment" href="#comment" data-id="{{_id}}">Add
           a Comment</a>
+        <a class="waves-effect waves-light btn link modal-trigger" id="displayComment" href="#commentDisplay" 
+          data-id="{{_id}}">Display Comments</a>
       </div>
       <div class="card-action" id="readMore">
         <a class="link" href="{{link}}">Read More</a>
@@ -53,7 +55,6 @@
           {{/note}}
         </div>
       </div>
-
     </div>
   </div>
   {{/each}}

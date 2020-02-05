@@ -1,57 +1,44 @@
-var express = require("express");
+const express = require("express");
 const axios = require('axios');
-// const cheerio = require('cheerio');
-var mongoose = require("mongoose");
+const cheerio = require('cheerio');
+const mongoose = require("mongoose");
+const db = require("../models");
 
-var db = require("../models");
+const router = require("express").Router();
 
-var router = require("express").Router(); 
+router.get("/", function (req, res) {
+  db.Article.find({ "favorite": false })
+    // .sort({ _id: -1 })
+    .then(function (dbArticle) {
+      const hbsObject = {
+        article: dbArticle
+      };
+      res.render("index", hbsObject);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+})
 
-router.get("/", function(req, res){
-  db.Article.find(function(err, data){
-    // console.log(err)
-    var hbsObject = {
-      article: data  
-    };
-    res.render("index", hbsObject);
+
+router.get("/favorites", function (req, res) {
+
+  db.Article.find({
+    "favorite": true
   })
-}); 
-
-// Favorites Page 
-
-router.get("/favorites", function(req, res) {
-  db.Article.find({favorite: true})
-    .sort({ _id: -1 })
+    // .sort({ _id: -1 })
     .populate("note")
-    .exec(function(err, data) {
-      if (err) {
-        console.log(err);
-      } else {
-        const artcl = { article: data };
-        res.render("favorites", artcl);
-      }
+    .then(function (dbArticle) {
+      const hbsObject = {
+        article: dbArticle
+      };
+      // console.log("This is hdsObject", hbsObject);
+      res.render("favorites", hbsObject);
+    })
+    .catch(function (err) {
+      res.json(err);
     });
 });
-
-
-// router.get("/favorites", function (req, res) {
-//   db.Article.find({ "favorite": true })
-//     .populate("note")
-//     .then(function (dbArticle) {
-//       const hbsObject = {
-//         articles: dbArticle
-//       };
-//       res.render("favorites", hbsObject);
-//     })
-//     .catch(function (err) {
-//       res.json(err);
-//     });
-// })
-
-
-
-
-
 
 
 
