@@ -14,14 +14,25 @@ h1{
 
 nav, .page-footer{
   font-family: 'Playfair Display SC', serif;
-  font-size: 20px;
+  /* font-size: 1em; */
   background-color: darkred	;
+  width: 100%; 
 }
 
-.nav-wrapper{
-  margin: 0 1%; 
+.brand-logo{
+  width: 100%; 
+}
+ul{
+  text-align: center; 
+}
+ul li{
+  display: inline; 
+  margin: 2%; 
 }
 
+.btn{
+  background-color: darkred;
+}
 .card-content{
     height: 200px; 
     overflow: hidden;

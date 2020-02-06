@@ -14,11 +14,16 @@
         <p>{{body}}</p>
       </div>
       <div class="card-action" id="favoritesCard">
-        <a class="waves-effect waves-light btn link modal-trigger" id="addComment" href="#comments-modal-{{_id}}" data-id="{{_id}}">Add
+        <a class="waves-effect waves-light btn link modal-trigger" id="addComment" href="#comments-modal-{{_id}}"
+          data-id="{{_id}}">Add
           a Comment</a>
       </div>
-      <!-- Add Comment Modal--> 
-      <div  class="modal" id="comments-modal-{{_id}}" >
+      <div class="card-action" id="readMore">
+        <a class="link" href="{{link}}">Read More</a>
+      </div>
+
+      <!-- Add Comment Modal-->
+      <div class="modal" id="comments-modal-{{_id}}">
         <div class="modal-content">
           <div class="row">
             <div class="input-field">
@@ -33,25 +38,29 @@
             </div>
           </div>
           <div class="row">
-            <a class="saveComment modal-close waves-effect btn-flat" type="submit" data-id="{{_id}}">Save</a>
-            <a class="modal-close waves-effect btn-flat">Close</a>
+            <a class="saveComment modal-close btn waves-effect waves-light" type="submit" data-id="{{_id}}">Submit <i class="material-icons right">send</i>  </a>
+            <a class="modal-close waves-effect btn waves-effect waves-lights">Close<i class="material-icons right">close</i> </a>
           </div>
           <hr>
           <div class="row">
             <div class="notes" data-id={{_id}}>
               {{#note}}
-              <a data-id="{{_id}}" class="deleteNote btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
-              <small>{{name}} says: </small>
-              <p>{{text}}</p>
+              <div class="col-4">
+                <p>{{name}} says:  
+               <a data-id="{{_id}}" class="deleteNote btn-floating right btn-small waves-effect waves-light red"><i
+                class="material-icons">delete</i></a></p>
+              </div>
+              <div class="col-6">
+                <p>{{text}}</p>
+              </div>
+              </div>
               {{/note}}
-            </div>
+            
           </div>
         </div>
       </div>
-      <div class="card-action" id="readMore">
-        <a class="link" href="{{link}}">Read More</a>
-      </div>
     </div>
   </div>
-  {{/each}}
+</div>
+{{/each}}
 </div>

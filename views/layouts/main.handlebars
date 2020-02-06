@@ -31,14 +31,21 @@
 	{{>navbar}}
 	<main>
 		<div class="container">
+			<div>
+				<ul>
+					<li><a href="/favorites" class="btn">Favorites </a> </li>
+					<li><a id="scrape" class="btn">Scrape</a><s></s></li>
+					<li><a id="clear" class="btn">Clear</a></li>
+			</div>
+
 			{{{body}}}
 		</div>
 	</main>
 	{{>footer}}
-{{!-- javascript --}}
-    <script type="text/javascript" src="assets/js/index.js"></script>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	{{!-- javascript --}}
+	<script type="text/javascript" src="assets/js/index.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
 </body>
 

@@ -7,6 +7,7 @@ const db = require("../models");
 // Scrape radical reads
 router.get("/scrape", function (req, res) {
   // First, we grab the body of the html with axios
+  // @ts-ignore
   axios.get("https://radicalreads.com/")
     .then(function (response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
