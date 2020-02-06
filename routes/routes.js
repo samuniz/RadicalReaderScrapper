@@ -106,6 +106,7 @@ function(req, res){
             { note: dbNote._id}
           }, {new: true});
         })
+       
         .then(function(dbArticle){
           res.json(dbArticle)
         })
@@ -114,18 +115,21 @@ function(req, res){
         })
       });
 
-// Display a Comment 
-// router.get("/note/:id", function (req, res) {
-//   console.log("req.params", req.params)  
-//   db.Note.findById(
-//     { _id: req.params.id },
-//     { name: req.params.name }, 
-//     {text: req.params.text})
-//     .then(function (data) {
-//       res.json(data)
-//     })
+// Delete a comment 
+router.delete("/favorites/:id/comment/:commentId", function (req, res) {
+  db.Note.deleteOne({ _id: req.params.commentId })
+    .then(function () {
+      return db.Article.updateOne({ _id: req.params.articleId }, 
+        { $pull: { note: req.params.commentId } });
+    })
+    .then(function (dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+})
 
-// });
 
 
    

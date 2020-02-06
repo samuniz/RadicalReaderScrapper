@@ -33,6 +33,10 @@ ul li{
 .btn{
   background-color: darkred;
 }
+
+.btn:hover{
+  background-color: red;
+}
 .card-content{
     height: 200px; 
     overflow: hidden;
