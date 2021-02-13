@@ -18,14 +18,15 @@
   },
   "homepage": "https://github.com/samuniz/RadicalReaderScrapper#readme",
   "dependencies": {
-    "@types/jquery": "^3.3.31",
-    "axios": "^0.19.2",
+    "@types/jquery": "^3.5.5",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
-    "cheerio": "^1.0.0-rc.3",
+    "cheerio": "^1.0.0-rc.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "logger": "0.0.1",
-    "mongoose": "^5.8.9",
-    "morgan": "^1.9.1"
+    "mongoose": "^5.11.16",
+    "morgan": "^1.10.0"
   }
 }
