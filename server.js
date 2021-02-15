@@ -24,9 +24,7 @@ const htmlRoutes = require("./routes/htmlRoutes")
 app.use(htmlRoutes);
 //  radicalreaders2021
 // Connect to the Mongo DB
-const MONGODB_URI = 'mongodb+srv://sabrina_admin:radicalreaders2021@radicalreaders.tgt3j.mongodb.net/<dbname>?retryWrites=true&w=majority'
-;
-
+const MONGODB_URI = 'mongodb+srv://sabrina_admin:radicalreaders2021@radicalreaders.tgt3j.mongodb.net/<dbname>?retryWrites=true&w=majority';
 mongoose.connect(MONGODB_URI || "mongodb://localhost/radical-reads-scrape", 
   { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useCreateIndex', true);
